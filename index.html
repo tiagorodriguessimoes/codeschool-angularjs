@@ -4,19 +4,18 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7/css/bootstrap.min.css" />
-    <script type="text/javascript" src="./resources/angular.min.js"></script>
-    <!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
-    <script type="text/javascript" src="./app.js"></script>
+	<script type="text/javascript" src="./resources/angular.min.js"></script>
+	<!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="./app.js"></script>
 </head>
 
-<body>
-	<div ng-controller='StoreController as store'>
+<body ng-controller='StoreController as store'>
+	<div ng-show="!store.product.soldOut">
 		<h1>  {{store.product.name}} </h1>
 		<h2>  ${{store.product.price}} </h2>
 		<p> {{store.product.description}} </p>
+		<button ng-show="store.product.canPurchase"> Add to Cart </button>
 	</div>
-
-
 </body>
 
 </html>
