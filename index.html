@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html ng-app="store">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="./resources/angular.min.js"></script>
+    <!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
+    <script type="text/javascript" src="./app.js"></script>
+</head>
+
+<body>
+	<div ng-controller='StoreController as store'>
+		<h1>  {{store.product.name}} </h1>
+		<h2>  ${{store.product.price}} </h2>
+		<p> {{store.product.description}} </p>
+	</div>
+
+
+</body>
+
+</html>
