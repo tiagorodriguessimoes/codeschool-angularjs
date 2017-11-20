@@ -33,6 +33,18 @@
 			images: [
                 './images/dodecahedron/dodecahedron-01-full.jpg',
 				'./images/dodecahedron/dodecahedron-01-thumb.jpg'
+            ],
+            reviews: [
+                {
+                    stars: 5,
+                    body: "I love this product!",
+                    author: "joe@thomas.com"
+                },
+                {
+                    stars: 1,
+                    body: "this product sucks!",
+                    author: "tim@hater.com"
+                }
             ]
 		},
 		{
