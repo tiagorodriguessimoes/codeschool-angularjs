@@ -39,43 +39,44 @@
 			<div class="panel" ng-show="panel.isSelected(3)">
 				<h4>Reviews </h4>
 
-					<blockquote ng-repeat="review in product.reviews">
-						<b> Stars: {{review.stars}}</b> {{review.body}}
-						<cite>by: {{review.author}}</cite>
+				<blockquote ng-repeat="review in product.reviews">
+					<strong>{{review.stars}} Stars</strong> {{review.body}}
+					<cite class="clearfix">- {{review.author}}</cite>
+				</blockquote>
+				<!-- Review Form -->
+				<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+					<!-- Live Preview -->
+					<blockquote>
+						<strong>{{reviewCtrl.review.stars}} Stars</strong> {{reviewCtrl.review.body}}
+						<cite class="clearfix">- {{reviewCtrl.review.author}}</cite>
 					</blockquote>
-					<!-- Review Form -->
-					<form name="reviewForm">
-						<!-- Live Preview -->
-						<blockquote>
-							<b> Stars: {{review.stars}}</b>{{review.body}}
-							<cite>by: {{review.author}}</cite>
-						</blockquote>
-						<fieldset class="form-group">
-						    <select class="form-control" ng-model="review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+					<!-- Rating -->
+					<fieldset class="form-group">
+						<select class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
 						    	<option value="">Rate the Product</option>
 						    </select>
-						</fieldset>
+					</fieldset>
+					<!-- Review -->
+					<fieldset class="form-group">
+						<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+					</fieldset>
+					<!-- Email -->
+					<fieldset class="form-group">
+						<input type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" />
+					</fieldset>
+					<!-- Submit button -->
+					<fieldset class="form-group">
+						<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+					</fieldset>
 
-						<fieldset class="form-group">
-                			<textarea class="form-control" ng-model="review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
-              			</fieldset>
+				</form>
+				<p>What color would you like?</p>
+				<ul>
+					<input ng-model="review.color" type="radio" value="red" /> Red
+					<input ng-model="review.color" type="radio" value="blue" /> Blue
+				</ul>
 
-						<fieldset class="form-group">
-		                	<input type="email" class="form-control" ng-model="review.author" placeholder="jimmyDean@example.org" title="Email" />
-		              	</fieldset>
-
-						<fieldset class="form-group">
-		                	<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
-		              	</fieldset>
-
-					</form>
-					<p>What color would you like?</p>
-					<ul>
-						<input ng-model="review.color" type="radio" value="red"  /> Red
-						<input ng-model="review.color" type="radio" value="blue"  /> Blue
-					</ul>
-
-					<input ng-model="review.terms" type="checkbox"  /> I agree to the terms . . .
+				<input ng-model="review.terms" type="checkbox" /> I agree to the terms . . .
 			</div>
 
 			<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
