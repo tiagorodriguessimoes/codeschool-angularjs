@@ -12,10 +12,8 @@
 <body ng-controller='StoreController as store'>
 	<div ng-repeat="product in store.products">
 		<h1>  {{product.name}} </h1>
-		<!-- <li ng-repeat="image in product.images" ng-show="product.images[0]">
-			<img ng-src="{{image}}" />
-		</li> -->
         <img ng-src="{{product.images[0].thumb}}" />
+        <h2>  {{product.price | currency}} </h2>
 		<button ng-show="product.canPurchase"> Add to Cart </button>
         <section ng-controller="PanelController as panel">
             <ul class="nav nav-pills">
@@ -29,8 +27,19 @@
                     <a href ng-click="panel.selectTab(3)"> Reviews </a>
                 </li>
             </ul>
-            <h2>  {{product.price | currency}} </h2>
-            <p> {{product.description}} </p>
+
+            <div class="panel" ng-show="panel.isSelected(1)">
+                <h4>Description </h4>
+                <blockquote>{{product.description}}</blockquote>
+            </div>
+            <div class="panel" ng-show="panel.isSelected(2)">
+                <h4>Specifications </h4>
+
+            </div>
+            <div class="panel" ng-show="panel.isSelected(3)">
+                <h4>Reviews </h4>
+            </div>
+        </section>
 	</div>
 </body>
 
