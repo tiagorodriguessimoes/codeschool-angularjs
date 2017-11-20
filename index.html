@@ -43,28 +43,33 @@
 						<b> Stars: {{review.stars}}</b> {{review.body}}
 						<cite>by: {{review.author}}</cite>
 					</blockquote>
-
+					<!-- Review Form -->
 					<form name="reviewForm">
+						<!-- Live Preview -->
 						<blockquote>
-							<b> Stars: {{review.stars}}</b>
-							<p> {{review.body}}</p>
+							<b> Stars: {{review.stars}}</b>{{review.body}}
 							<cite>by: {{review.author}}</cite>
 						</blockquote>
-						<select ng-model="review.stars">
-			                <option value="1">1 star</option>
-				            <option value="2">2 stars</option>
-							<option value="3">3 stars</option>
-				            <option value="4">4 stars</option>
-							<option value="5">5 stars</option>
-			        	</select>
-						<textarea ng-model="review.body"></textarea>
-						<label>by: </label>
-						<input ng-model="review.author" type="email" />
-						<input type="submit" value="Submit"  />
+						<fieldset class="form-group">
+						    <select class="form-control" ng-model="review.stars" ng-options="stars for stars in [5,4,3,2,1]"  title="Stars">
+						    	<option value="">Rate the Product</option>
+						    </select>
+						</fieldset>
+
+						<fieldset class="form-group">
+                			<textarea class="form-control" ng-model="review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+              			</fieldset>
+
+						<fieldset class="form-group">
+		                	<input type="email" class="form-control" ng-model="review.author" placeholder="jimmyDean@example.org" title="Email" />
+		              	</fieldset>
+
+						<fieldset class="form-group">
+		                	<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+		              	</fieldset>
+
 					</form>
-					<p>
-						What color would you like?
-					</p>
+					<p>What color would you like?</p>
 					<ul>
 						<input ng-model="review.color" type="radio" value="red"  /> Red
 						<input ng-model="review.color" type="radio" value="blue"  /> Blue
