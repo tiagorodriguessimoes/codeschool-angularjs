@@ -12,10 +12,11 @@
 <body ng-controller='StoreController as store'>
 	<div ng-repeat="product in store.products">
 		<h1>  {{product.name}} </h1>
-        <img ng-src="{{product.images[0].thumb}}" />
+        <img ng-src="{{product.images[1]}}" />
         <h2>  {{product.price | currency}} </h2>
 		<button ng-show="product.canPurchase"> Add to Cart </button>
         <section ng-controller="PanelController as panel">
+
             <ul class="nav nav-pills">
                 <li ng-class="{ active:panel.isSelected(1)}">
                     <a href ng-click="panel.selectTab(1)"> Description </a>
@@ -34,11 +35,20 @@
             </div>
             <div class="panel" ng-show="panel.isSelected(2)">
                 <h4>Specifications </h4>
-
             </div>
             <div class="panel" ng-show="panel.isSelected(3)">
                 <h4>Reviews </h4>
             </div>
+
+            <div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
+                <img ng-src="{{product.images[gallery.current]}}" />
+                <ul class="list-inline thumbs">
+                    <li class="thumbnail" ng-repeat="image in product.images">
+                        <img ng-src="{{image}}"  />
+                    </li>
+                </ul>
+            </div>
+
         </section>
 	</div>
 </body>

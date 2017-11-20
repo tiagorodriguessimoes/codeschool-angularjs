@@ -17,16 +17,23 @@
 		};
 	})
 
-	var gems = [{
+    app.controller("GalleryController", function(){
+        this.current = 0;
+        this.setCurrent = function(newGallery){
+            this.current = newGallery || 0;
+        };
+    });
+
+    var gems = [{
 			name: 'Dodecahedron',
 			price: 2.95,
 			description: '. . .',
 			canPurchase: true,
 			soldOut: false,
-			images: [{
-				full: './images/dodecahedron/dodecahedron-01-full.jpg',
-				thumb: './images/dodecahedron/dodecahedron-01-thumb.jpg'
-			}]
+			images: [
+                './images/dodecahedron/dodecahedron-01-full.jpg',
+				'./images/dodecahedron/dodecahedron-01-thumb.jpg'
+            ]
 		},
 		{
 			name: 'Pentagonal Gem',
@@ -34,6 +41,10 @@
 			description: '. . .',
 			canPurchase: true,
 			soldOut: false,
+            images: [
+                './images/pentagonal/pentagonal-01-full.jpg',
+                './images/pentagonal/pentagonal-01-thumb.jpg',
+            ]
 		}
 	]
 
