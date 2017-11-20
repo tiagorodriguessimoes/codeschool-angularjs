@@ -13,8 +13,8 @@
             canPurchase: true,
             soldOut: false,
             images: [
-                    './images/dodecahedron/dodecahedron-01-full.jpg',
-                    './images/dodecahedron/dodecahedron-01-thumb.jpg'
+                    // './images/dodecahedron/dodecahedron-01-full.jpg',
+                    // './images/dodecahedron/dodecahedron-01-thumb.jpg'
             ]
     	},
         {
