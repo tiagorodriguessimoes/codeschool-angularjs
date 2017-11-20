@@ -10,11 +10,28 @@
 </head>
 
 <body ng-controller='StoreController as store'>
-	<div ng-show="!store.product.soldOut">
-		<h1>  {{store.product.name}} </h1>
+	<!-- <div ng-show="!store.product.soldOut"> -->
+	<!-- <div ng-hide="store.product.soldOut"> -->
+	<!-- <div> -->
+	<!-- If there was only one product
+        <h1>  {{store.product.name}} </h1>
 		<h2>  ${{store.product.price}} </h2>
 		<p> {{store.product.description}} </p>
-		<button ng-show="store.product.canPurchase"> Add to Cart </button>
+		<button ng-show="store.product.canPurchase"> Add to Cart </button> -->
+
+	<!-- If we want to select the first product from an Array of products
+        <h1>  {{store.products[0].name}} </h1>
+		<h2>  ${{store.products[0].price}} </h2>
+		<p> {{store.product[0].description}} </p>
+		<button ng-show="store.products[0].canPurchase"> Add to Cart </button> -->
+
+	<div ng-repeat="product in store.products">
+		<h1>  {{product.name}} </h1>
+		<h2>  ${{product.price}} </h2>
+		<p> {{product.description}} </p>
+		<button ng-show="product.canPurchase"> Add to Cart </button>
+
+
 	</div>
 </body>
 
