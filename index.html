@@ -1,94 +1,84 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <html ng-app="store">
-    <head>
-    	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7/css/bootstrap.min.css" />
-    	<script type="text/javascript" src="./resources/angular.min.js"></script>
-    	<!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
-    	<script type="text/javascript" src="./app.js"></script>
-        <link rel="stylesheet" type="text/css" src="./css/style.css" />
-    </head>
-    <body ng-controller='StoreController as store'>
-        <ul class="list-group">
-        <li class="list-group-item" ng-repeat="product in store.products">
-    		<h3>  {{product.name}}
+
+<head>
+	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7/css/bootstrap.min.css" />
+	<script type="text/javascript" src="./resources/angular.min.js"></script>
+	<!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
+	<script type="text/javascript" src="./app.js"></script>
+	<link rel="stylesheet" type="text/css" src="./css/style.css" />
+</head>
+
+<body ng-controller='StoreController as store'>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="product in store.products">
+			<h3>  {{product.name}}
             <em class="pull-right"> {{product.price | currency}} </em>
             </h3>
-    		<img ng-src="{{product.images[1]}}" />
-    		<button ng-show="product.canPurchase"> Add to Cart </button>
-    		<section ng-controller="PanelController as panel">
+			<img ng-src="{{product.images[1]}}" />
+			<button ng-show="product.canPurchase"> Add to Cart </button>
+			<product-panels></product-panels>
+			<product-description ng-show="panel.isSelected(1)"></product-description>
+			<div class="panel" ng-show="panel.isSelected(2)">
+				<h4>Specifications </h4>
+			</div>
+			<div class="panel" ng-show="panel.isSelected(3)">
+				<h4>Reviews </h4>
 
-    			<ul class="nav nav-pills">
-    				<li ng-class="{ active:panel.isSelected(1)}">
-    					<a href ng-click="panel.selectTab(1)"> Description </a>
-    				</li>
-    				<li ng-class="{ active:panel.isSelected(2)}">
-    					<a href ng-click="panel.selectTab(2)"> Specifications </a>
-    				</li>
-    				<li ng-class="{ active:panel.isSelected(3)}">
-    					<a href ng-click="panel.selectTab(3)"> Reviews </a>
-    				</li>
-    			</ul>
+				<blockquote ng-repeat="review in product.reviews">
+					<strong>{{review.stars}} Stars</strong> {{review.body}}
+					<cite class="clearfix">-{{review.author}} on {{review.createdOn | date}}</cite>;
+				</blockquote>
 
-    			<product-description ng-show="panel.isSelected(1)" ></product-description>
-    			<div class="panel" ng-show="panel.isSelected(2)">
-    				<h4>Specifications </h4>
-    			</div>
-    			<div class="panel" ng-show="panel.isSelected(3)">
-    				<h4>Reviews </h4>
-
-    				<blockquote ng-repeat="review in product.reviews">
-    					<strong>{{review.stars}} Stars</strong> {{review.body}}
-    					<cite class="clearfix">-{{review.author}} on {{review.createdOn | date}}</cite>;
-    				</blockquote>
-
-    				<!-- Review Form -->
-    				<form name="reviewForm" novalidate ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
-    					<!-- Live Preview -->
-    					<blockquote>
-    						<strong>{{reviewCtrl.review.stars}} Stars</strong> {{reviewCtrl.review.body}}
-    						<cite class="clearfix">- {{reviewCtrl.review.author}}</cite>
-    					</blockquote>
-    					<!-- Rating -->
-    					<fieldset class="form-group">
-    						<select required class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+				<!-- Review Form -->
+				<form name="reviewForm" novalidate ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
+					<!-- Live Preview -->
+					<blockquote>
+						<strong>{{reviewCtrl.review.stars}} Stars</strong> {{reviewCtrl.review.body}}
+						<cite class="clearfix">- {{reviewCtrl.review.author}}</cite>
+					</blockquote>
+					<!-- Rating -->
+					<fieldset class="form-group">
+						<select required class="form-control" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
     						    	<option value="">Rate the Product</option>
     						    </select>
-    					</fieldset>
-    					<!-- Review -->
-    					<fieldset class="form-group">
-    						<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
-    					</fieldset>
-    					<!-- Email -->
-    					<fieldset class="form-group">
-    						<input required type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" />
-    					</fieldset>
-    					<!-- Submit button -->
-    					<fieldset class="form-group">
-    						<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
-    					</fieldset>
+					</fieldset>
+					<!-- Review -->
+					<fieldset class="form-group">
+						<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="Write a short review of the product..." title="Review"></textarea>
+					</fieldset>
+					<!-- Email -->
+					<fieldset class="form-group">
+						<input required type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="jimmyDean@example.org" title="Email" />
+					</fieldset>
+					<!-- Submit button -->
+					<fieldset class="form-group">
+						<input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+					</fieldset>
 
-    				</form>
-    				<p>What color would you like?</p>
-    				<ul>
-    					<input ng-model="review.color" type="radio" value="red" /> Red
-    					<input ng-model="review.color" type="radio" value="blue" /> Blue
-    				</ul>
+				</form>
+				<p>What color would you like?</p>
+				<ul>
+					<input ng-model="review.color" type="radio" value="red" /> Red
+					<input ng-model="review.color" type="radio" value="blue" /> Blue
+				</ul>
 
-    				<input ng-model="review.terms" type="checkbox" /> I agree to the terms . . .
-    			</div>
+				<input ng-model="review.terms" type="checkbox" /> I agree to the terms . . .
+			</div>
 
-    			<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
-    				<img ng-src="{{product.images[gallery.current]}}" />
-    				<ul class="list-inline thumbs">
-    					<li class="thumbnail" ng-repeat="image in product.images">
-    						<img ng-src="{{image}}" />
-    					</li>
-    				</ul>
-    			</div>
+			<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
+				<img ng-src="{{product.images[gallery.current]}}" />
+				<ul class="list-inline thumbs">
+					<li class="thumbnail" ng-repeat="image in product.images">
+						<img ng-src="{{image}}" />
+					</li>
+				</ul>
+			</div>
 
-    		</section>
-        </li>
-        </ul>
-    </body>
+
+		</li>
+	</ul>
+</body>
+
 </html>
