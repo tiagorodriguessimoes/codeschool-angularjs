@@ -18,7 +18,9 @@
             </h3>
 			<img ng-src="{{product.images[1]}}" />
 			<button ng-show="product.canPurchase"> Add to Cart </button>
+
 			<product-panels></product-panels>
+
 			<product-description ng-show="panel.isSelected(1)"></product-description>
 			<div class="panel" ng-show="panel.isSelected(2)">
 				<h4>Specifications </h4>
@@ -67,15 +69,8 @@
 				<input ng-model="review.terms" type="checkbox" /> I agree to the terms . . .
 			</div>
 
-			<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery">
-				<img ng-src="{{product.images[gallery.current]}}" />
-				<ul class="list-inline thumbs">
-					<li class="thumbnail" ng-repeat="image in product.images">
-						<img ng-src="{{image}}" />
-					</li>
-				</ul>
-			</div>
 
+			<product-gallery></product-gallery>
 
 		</li>
 	</ul>
