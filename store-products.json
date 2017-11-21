@@ -1,0 +1,34 @@
+[{
+		name: 'Dodecahedron',
+		price: 2.95,
+		description: '. . .',
+		canPurchase: true,
+		soldOut: false,
+		images: [
+			'./images/dodecahedron/dodecahedron-01-full.jpg',
+			'./images/dodecahedron/dodecahedron-01-thumb.jpg'
+		],
+		reviews: [{
+				stars: 5,
+				body: "I love this product!",
+				author: "joe@thomas.com"
+			},
+			{
+				stars: 1,
+				body: "this product sucks!",
+				author: "tim@hater.com"
+			}
+		]
+	},
+	{
+		name: 'Pentagonal Gem',
+		price: 5.95,
+		description: '. . .',
+		canPurchase: true,
+		soldOut: false,
+		images: [
+			'./images/pentagonal/pentagonal-01-full.jpg',
+			'./images/pentagonal/pentagonal-01-thumb.jpg',
+		]
+	}
+]

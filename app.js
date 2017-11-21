@@ -1,23 +1,9 @@
 (function() {
-	var app = angular.module('store', []);
+	var app = angular.module('store', ['store-directives']);
 
 	app.controller('StoreController', function() {
 		this.products = gems;
 	});
-
-    app.directive('productGallery', function(){
-      return{
-        restrict: 'E',
-        templateUrl: "product-gallery.html",
-        controller: function(){
-          this.current = 0;
-          this.setCurrent = function(imageNumber){
-            this.current = imageNumber || 0;
-          };
-        },
-        controllerAs: 'gallery',
-      };
-    });
 
 	app.controller("ReviewController", function(){
 		this.review = {};
@@ -29,31 +15,14 @@
         };
 	});
 
-    app.directive('productDescription', function(){
-        return {
-          restrict: 'E',
-          templateUrl: 'product-description.html'
-        };
-      });
-
-    app.directive('productPanels', function(){
-        return {
-            restrict: 'E',
-            templateUrl: 'product-panels.html',
-            controller: function() {
-                this.tab = 1;
-
-                this.selectTab = function(setTab) {
-                    this.tab = setTab;
-                };
-
-                this.isSelected = function(checkTab) {
-                    return this.tab === checkTab;
-                };
-            },
-            controllerAs: 'panel',
-        };
-    });
+	// app.controller('StoreController', [ '$http', function($http){
+	// 	var store = this;
+	// 	store.products = [];
+	// 	$http.get('/store-products.json').success(function(data){
+	// 		store.products = data;
+	// 	});
+	// }]);
+    //
     var gems = [{
 			name: 'Dodecahedron',
 			price: 2.95,
