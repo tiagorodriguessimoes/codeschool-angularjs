@@ -34,6 +34,13 @@
         };
 	});
 
+    app.directive('productDescription', function(){
+        return {
+          restrict: 'E',
+          templateUrl: 'product-description.html'
+        };
+      });
+
 	var gems = [{
 			name: 'Dodecahedron',
 			price: 2.95,
