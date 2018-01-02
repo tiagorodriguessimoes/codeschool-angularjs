@@ -4,10 +4,11 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="./resources/bootstrap-3.3.7/css/bootstrap.min.css" />
-	<script type="text/javascript" src="./resources/angular.min.js"></script>
+	<script type="text/javascript" src="./resources/angular.js"></script>
 	<!-- <script type="text/javascript" src="./resources/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
 	<script type="text/javascript" src="./app.js"></script>
 	<script type="text/javascript" src="./products.js"></script>
+	<script type="text/javascript" src="./ctrl.js"></script>
 	<link rel="stylesheet" type="text/css" src="./css/style.css" />
 </head>
 
@@ -35,7 +36,7 @@
 				</blockquote>
 
 				<!-- Review Form -->
-				<form name="reviewForm" novalidate ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
+				<form name="reviewForm" novalidate ng-controller="ReviewController1 as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)">
 					<!-- Live Preview -->
 					<blockquote>
 						<strong>{{reviewCtrl.review.stars}} Stars</strong> {{reviewCtrl.review.body}}

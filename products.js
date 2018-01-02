@@ -1,7 +1,8 @@
 (function (){
-	var app = angular.module('store-directives', []);
+	angular
+    .module('store-directives', [])
 
-    app.directive('productGallery', function(){
+    .directive('productGallery', function(){
       return{
         restrict: 'E',
         templateUrl: "product-gallery.html",
@@ -13,16 +14,16 @@
         },
         controllerAs: 'gallery',
       };
-    });
+    })
 
-    app.directive('productDescription', function(){
+    .directive('productDescription', function(){
         return {
           restrict: 'E',
           templateUrl: 'product-description.html'
         };
-      });
+      })
 
-    app.directive('productPanels', function(){
+    .directive('productPanels', function(){
         return {
             restrict: 'E',
             templateUrl: 'product-panels.html',
